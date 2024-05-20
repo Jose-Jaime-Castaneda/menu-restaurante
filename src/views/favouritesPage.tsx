@@ -1,7 +1,9 @@
-export default function FavouritesPage () {
+import Header from "../components/Header";
+
+export default function FavouritesPage() {
   return (
-    <div>
-      favouritesPage
-    </div>
+    <>
+      <Header />
+    </>
   );
 };
