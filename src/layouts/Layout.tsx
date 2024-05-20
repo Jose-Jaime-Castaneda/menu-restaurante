@@ -6,7 +6,9 @@ export default function Layout() {
         <>
             <Header />
 
-            <Outlet />
+            <main className=" container mx-auto py-16">
+                <Outlet />
+            </main>
         </>
     );
 };
