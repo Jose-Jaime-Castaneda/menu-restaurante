@@ -1,9 +1,9 @@
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useAppStore } from "../stores/useAppStore";
 
 export default function Header() {
-    const { categories, fetchCategories } = useAppStore()
+    const { categories, fetchCategories, searchRecipies } = useAppStore()
     const { pathname } = useLocation()
 
     const [searchFilters, setSearchFilters] = useState({
@@ -22,6 +22,17 @@ export default function Header() {
             ...searchFilters,
             [e.target.name]: e.target.value
         })
+    }
+
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        if (Object.values(searchFilters).includes('')) {
+            console.log('Hay campos vacíos');
+            return
+        }
+
+        searchRecipies(searchFilters);
     }
 
     return (
@@ -50,7 +61,9 @@ export default function Header() {
                 </div>
                 {
                     isHome && (
-                        <form className=" md:w-1/2 lg:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6">
+                        <form className=" md:w-1/2 lg:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6"
+                            onSubmit={handleSubmit}
+                        >
                             <div className=" space-y-4">
                                 <label
                                     htmlFor="ingredient"
