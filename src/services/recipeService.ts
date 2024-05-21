@@ -14,5 +14,9 @@ export async function getCategories() {
 }
 
 export async function getRecipies(filters: SearchFilter) {
-  console.log("hola");
+  const { data } = await axios(
+    `www.thecocktaildb.com/api/json/v1/1/filter.php?c=${filters.category}&i=${filters.ingredient}`
+  );
+
+  console.log(data);
 }
