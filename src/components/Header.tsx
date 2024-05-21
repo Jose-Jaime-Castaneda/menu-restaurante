@@ -3,7 +3,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { useAppStore } from "../stores/useAppStore";
 
 export default function Header() {
-    const { fetchCategories } = useAppStore()
+    const { categories, fetchCategories } = useAppStore()
     const { pathname } = useLocation()
 
     const isHome = useMemo(() => pathname === '/', [pathname])
@@ -66,6 +66,11 @@ export default function Header() {
                                     className="p-3 w-full rounded-lg focus:outline-none"
                                 >
                                     <option value="">-- Seleccione una Categoria --</option>
+                                    {
+                                        categories.drinks.map((drink) => (
+                                            <option key={drink.strCategory} value={drink.strCategory}>{drink.strCategory}</option>
+                                        ))
+                                    }
                                 </select>
                             </div>
 
