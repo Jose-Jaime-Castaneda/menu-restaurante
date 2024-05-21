@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useAppStore } from "../stores/useAppStore";
 
@@ -6,11 +6,23 @@ export default function Header() {
     const { categories, fetchCategories } = useAppStore()
     const { pathname } = useLocation()
 
+    const [searchFilters, setSearchFilters] = useState({
+        ingredient: '',
+        category: ''
+    })
+
     const isHome = useMemo(() => pathname === '/', [pathname])
 
     useEffect(() => {
         fetchCategories()
     }, [])
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
+        setSearchFilters({
+            ...searchFilters,
+            [e.target.name]: e.target.value
+        })
+    }
 
     return (
         <header className={isHome ? 'bg-header bg-center bg-cover' : 'bg-slate-800'}>
@@ -51,19 +63,23 @@ export default function Header() {
                                     id="ingredient"
                                     className="p-3 w-full rounded-lg focus:outline-none"
                                     placeholder="Nombre o Ingrete. Ej, Vodka, Café"
+                                    onChange={handleChange}
+                                    value={searchFilters.ingredient}
                                 />
                             </div>
 
                             <div className=" space-y-4">
                                 <label
-                                    htmlFor="ingredient"
+                                    htmlFor="category"
                                     className="block text-white uppercase font-extrabold text-lg"
                                 >Categoria</label>
 
                                 <select
-                                    name="ingredient"
-                                    id="ingredient"
+                                    name="category"
+                                    id="caregory"
                                     className="p-3 w-full rounded-lg focus:outline-none"
+                                    onChange={handleChange}
+                                    value={searchFilters.category}
                                 >
                                     <option value="">-- Seleccione una Categoria --</option>
                                     {
