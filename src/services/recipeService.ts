@@ -1,5 +1,6 @@
 import axios from "axios";
 import { CategoriesAPIResponseSchema } from "../schema/recipies-schema";
+import { SearchFilter } from "../types";
 
 export async function getCategories() {
   const { data } = await axios(
@@ -10,4 +11,8 @@ export async function getCategories() {
   if (result.success) {
     return result.data;
   }
+}
+
+export async function getRecipies(filters: SearchFilter) {
+  console.log("hola");
 }
