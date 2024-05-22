@@ -3,7 +3,7 @@ import {
   CategoriesAPIResponseSchema,
   DrinksAPIResponse,
 } from "../schema/recipies-schema";
-import { SearchFilter } from "../types";
+import { Drink, SearchFilter } from "../types";
 
 export async function getCategories() {
   const { data } = await axios(
@@ -26,3 +26,5 @@ export async function getRecipies(filters: SearchFilter) {
     return result.data;
   }
 }
+
+export async function getRecipeById(id: Drink["idDrink"]) {}

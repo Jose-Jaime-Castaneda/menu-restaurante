@@ -1,5 +1,9 @@
 import { StateCreator } from "zustand";
-import { getCategories, getRecipies } from "../services/recipeService";
+import {
+  getCategories,
+  getRecipeById,
+  getRecipies,
+} from "../services/recipeService";
 import { Categories, Drink, Drinks, SearchFilter } from "../types";
 
 export type RecipiesSliceType = {
@@ -31,5 +35,7 @@ export const createRecipiesSlice: StateCreator<RecipiesSliceType> = (set) => ({
       drinks,
     });
   },
-  selectRecipe: async (id) => {},
+  selectRecipe: async (id) => {
+    await getRecipeById(id);
+  },
 });
