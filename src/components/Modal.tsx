@@ -1,8 +1,10 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
+import { useAppStore } from '../stores/useAppStore';
 
 export default function Modal() {
-    const [modal, useModal] = useState(false)
+    const { modal } = useAppStore()
+
     return (
         <>
             <Transition appear show={modal} as={Fragment}>
