@@ -20,6 +20,7 @@ export const createRecipiesSlice: StateCreator<RecipiesSliceType> = (set) => ({
     });
   },
   searchRecipies: async (searchFilters) => {
-    getRecipies(searchFilters);
+    const drinks = await getRecipies(searchFilters);
+    console.log(drinks);
   },
 });
