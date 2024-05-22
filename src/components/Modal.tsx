@@ -3,12 +3,12 @@ import { Fragment } from 'react';
 import { useAppStore } from '../stores/useAppStore';
 
 export default function Modal() {
-    const { modal } = useAppStore()
+    const { modal, closeModal } = useAppStore()
 
     return (
         <>
             <Transition appear show={modal} as={Fragment}>
-                <Dialog as="div" className="relative z-10" onClose={() => { }}>
+                <Dialog as="div" className="relative z-10" onClose={closeModal}>
                     <Transition.Child
                         as={Fragment}
                         enter="ease-out duration-300"
