@@ -19,7 +19,11 @@ export const createNotificationSlice: StateCreator<
   [],
   NotificationSlicetype
 > = (set, get) => ({
-  notification: {} as Notification,
+  notification: {
+    text: "",
+    error: false,
+    show: false,
+  },
 
   showNotification: (payload) => {
     set({
