@@ -18,7 +18,7 @@ export const createNotificationSlice: StateCreator<
   [],
   [],
   NotificationSlicetype
-> = (set) => ({
+> = (set, get) => ({
   notification: {} as Notification,
 
   showNotification: (payload) => {
@@ -29,6 +29,9 @@ export const createNotificationSlice: StateCreator<
         show: true,
       },
     });
+    setTimeout(() => {
+      get().hideNotification;
+    }, 5000);
   },
   hideNotification: () => {
     set({
