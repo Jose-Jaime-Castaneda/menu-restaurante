@@ -13,7 +13,7 @@ export const createFavouritesSlice: StateCreator<FavouritesSliceType> = (
 ) => ({
   favourite: [],
   handleClickFavourite: (drink) => {
-    if (get().favourite.some((fav) => fav.idDrink === drink.idDrink)) {
+    if (get().favouriteExist(drink.idDrink)) {
       set((state) => ({
         favourite: state.favourite.filter(
           (fav) => fav.idDrink !== drink.idDrink
