@@ -5,6 +5,6 @@ export type FavouritesSliceType = {
   favourite: Recipe[];
 };
 
-export const createFovouritesSlice: StateCreator<FavouritesSliceType> = () => ({
+export const createFavouritesSlice: StateCreator<FavouritesSliceType> = () => ({
   favourite: [],
 });
