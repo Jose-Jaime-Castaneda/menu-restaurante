@@ -3,7 +3,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { useAppStore } from "../stores/useAppStore";
 
 export default function Header() {
-    const { categories, fetchCategories, searchRecipies } = useAppStore()
+    const { categories, fetchCategories, searchRecipies, showNotification } = useAppStore()
     const { pathname } = useLocation()
 
     const [searchFilters, setSearchFilters] = useState({
@@ -28,7 +28,7 @@ export default function Header() {
         e.preventDefault()
 
         if (Object.values(searchFilters).includes('')) {
-            console.log('Hay campos vacíos');
+            showNotification({ text: 'Todos los campos deben estar llenos', error: true })
             return
         }
 
